@@ -50,14 +50,14 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Mobile Drawer */}
-      <div className={`${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} md:hidden overflow-hidden transition-all duration-200 bg-white/95 dark:bg-primary-900/95 border-t border-gray-100 dark:border-primary-800`}> 
+      <div className={`${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} md:hidden overflow-hidden transition-all duration-200 bg-white dark:bg-primary-900 border-t border-gray-200 dark:border-primary-700`}> 
         <nav className="px-6 py-4 flex flex-col gap-3">
           {NAV_LINKS.map(link => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="py-2 px-1 rounded text-base font-medium text-gray-800 dark:text-primary-100 hover:text-primary-700 dark:hover:text-accent-cyan"
+              className="py-2 px-1 rounded text-base font-medium text-gray-900 dark:text-white hover:text-primary-700 dark:hover:text-accent-cyan transition-colors"
             >
               {link.label}
             </a>

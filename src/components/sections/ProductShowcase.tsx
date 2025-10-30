@@ -56,19 +56,19 @@ export const ProductShowcaseSection = () => (
     </span>
     <div className="max-w-6xl mx-auto px-4">
       <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-900 dark:text-white mb-6 text-center">Our Flagship Platforms</h2>
-      <div className="grid gap-8 md:grid-cols-3 mt-12">
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-12">
         {cards.map(card => (
           <Card
             key={card.title}
             glass
-            className="group transition-all shadow-zippa-glow border border-transparent hover:border-primary-500 hover:shadow-lg backdrop-blur-xl bg-white/70 dark:bg-primary-700/70 relative"
+            className="group transition-all shadow-zippa-glow border border-gray-200 dark:border-primary-600 hover:border-primary-500 hover:shadow-xl backdrop-blur-xl bg-white dark:bg-primary-800 relative"
           >
             <div className="flex flex-col items-center gap-3">
               <div className="mb-2">{card.icon}</div>
               <div className="font-heading font-bold text-lg text-primary-900 dark:text-white">{card.title}</div>
-              <div className={`text-xs font-semibold px-2 py-1 rounded mt-1 ${card.badgeColor} text-white tracking-wide capitalize`}>{card.badge}</div>
-              <div className="text-sm text-gray-700 dark:text-primary-100 opacity-80 mt-2 text-center">{card.tagline}</div>
-              <div className="mt-2 mb-4 text-xs text-gray-600 dark:text-primary-100 text-center min-h-[48px]">{card.desc}</div>
+              <div className={`text-xs font-semibold px-3 py-1.5 rounded-full mt-1 ${card.badgeColor} text-white tracking-wide capitalize shadow-sm`}>{card.badge}</div>
+              <div className="text-sm text-gray-700 dark:text-gray-200 font-medium mt-2 text-center">{card.tagline}</div>
+              <div className="mt-2 mb-4 text-xs text-gray-600 dark:text-gray-300 text-center min-h-[48px] leading-relaxed">{card.desc}</div>
               <Button variant="primary" size="sm" href={card.cta.href} className="mt-auto group-hover:scale-105">{card.cta.label}</Button>
             </div>
           </Card>

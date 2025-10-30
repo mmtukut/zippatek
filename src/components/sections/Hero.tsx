@@ -37,8 +37,8 @@ export const Hero = () => (
     {/* Main content */}
     <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center justify-center text-center gap-6 px-6">
       <div className="flex items-center justify-center mb-2"><BridgeIcon /></div>
-      <motion.h1 initial={{y: 36, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.2}} className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold text-white leading-tight drop-shadow-xl">Building Africa's Infrastructure for Property Intelligence</motion.h1>
-      <motion.h2 initial={{y: 18, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.4}} className="text-lg sm:text-2xl text-primary-100 mt-2 font-medium">
+      <motion.h1 initial={{y: 36, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.2}} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white leading-tight drop-shadow-xl px-4">Building Africa's Infrastructure for Property Intelligence</motion.h1>
+      <motion.h2 initial={{y: 18, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.4}} className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary-100 mt-2 font-medium px-4 max-w-2xl">
         We leverage AI, satellite data, and modern web infrastructure to solve Africa's biggest market inefficiencies — starting with real estate.
       </motion.h2>
       <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.7}} className="flex flex-wrap gap-4 justify-center mt-5">
@@ -46,8 +46,8 @@ export const Hero = () => (
         <Button variant="secondary" size="lg" href="/contact">Book a Demo</Button>
       </motion.div>
       {/* Trust indicators */}
-      <div className="mt-10 flex flex-col items-center gap-3 text-sm text-white/70">
-        <div className="flex gap-8">
+      <div className="mt-10 flex flex-col items-center gap-3 text-sm text-white/90">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-center">
           <span>Trusted by <span className="font-bold text-accent-cyan">4+ Government Agencies</span></span>
           <span>Mapping <span className="font-bold text-accent-cyan">2M+ Properties</span> Across Nigeria</span>
         </div>
