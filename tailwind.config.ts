@@ -14,18 +14,15 @@ const config: Config = {
         'primary-700': '#1E40AF', // Royal Blue
         'primary-500': '#3B82F6', // Bright Blue
         'primary-100': '#DBEAFE', // Light Blue
-
         // Accent
         'accent-cyan': '#06B6D4',
         'accent-orange': '#F97316',
-
         // Neutral
         'gray-900': '#111827',
         'gray-700': '#374151',
         'gray-400': '#9CA3AF',
         'gray-100': '#F3F4F6',
         white: '#FFFFFF',
-
         // Semantic
         success: '#10B981',
         warning: '#F59E0B',
@@ -84,11 +81,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('tailwindcss-animate'),
-  ],
+  plugins: [],
 };
 
 export default config;
+
