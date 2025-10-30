@@ -31,32 +31,163 @@ const AnimatedNetworkBG = () => (
 );
 
 export const Hero = () => (
-  <section className="relative flex items-center justify-center min-h-screen overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-500">
+  <section className="section-primary section-xl relative flex items-center justify-center min-h-screen overflow-hidden">
     {/* Animated abstract background */}
-    <span className="absolute inset-0 pointer-events-none block"> <AnimatedNetworkBG /> </span>
+    <span className="absolute inset-0 pointer-events-none block opacity-40">
+      <AnimatedNetworkBG />
+    </span>
+    
     {/* Main content */}
-    <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center justify-center text-center gap-6 px-6">
-      <div className="flex items-center justify-center mb-2"><BridgeIcon /></div>
-      <motion.h1 initial={{y: 36, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.2}} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white leading-tight drop-shadow-xl px-4">Building Africa's Infrastructure for Property Intelligence</motion.h1>
-      <motion.h2 initial={{y: 18, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.4}} className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary-100 mt-2 font-medium px-4 max-w-2xl">
-        We leverage AI, satellite data, and modern web infrastructure to solve Africa's biggest market inefficiencies — starting with real estate.
-      </motion.h2>
-      <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.7}} className="flex flex-wrap gap-4 justify-center mt-5">
-        <Button variant="primary" size="lg" href="/products">Explore Our Solutions</Button>
-        <Button variant="secondary" size="lg" href="/contact">Book a Demo</Button>
+    <div className="container-sm relative z-10 flex flex-col items-center justify-center text-center">
+      {/* Brand Icon */}
+      <motion.div 
+        initial={{scale: 0.8, opacity:0}} 
+        animate={{scale:1, opacity:1}} 
+        transition={{duration:0.5}}
+        className="mb-8"
+      >
+        <BridgeIcon />
       </motion.div>
-      {/* Trust indicators */}
-      <div className="mt-10 flex flex-col items-center gap-3 text-sm text-white/90">
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-center">
-          <span>Trusted by <span className="font-bold text-accent-cyan">4+ Government Agencies</span></span>
-          <span>Mapping <span className="font-bold text-accent-cyan">2M+ Properties</span> Across Nigeria</span>
+      
+      {/* Hero Title */}
+      <motion.h1 
+        initial={{y: 30, opacity:0}} 
+        animate={{y:0, opacity:1}} 
+        transition={{delay:0.2, duration:0.6}}
+        className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold text-white leading-tight mb-6"
+      >
+        Building Africa's Infrastructure for Property Intelligence
+      </motion.h1>
+      
+      {/* Hero Subtitle */}
+      <motion.p 
+        initial={{y: 20, opacity:0}} 
+        animate={{y:0, opacity:1}} 
+        transition={{delay:0.4, duration:0.6}}
+        className="text-lg sm:text-xl md:text-2xl text-primary-100 font-medium max-w-3xl mb-10 leading-relaxed"
+      >
+        We leverage AI, satellite data, and modern web infrastructure to solve Africa's biggest market inefficiencies — starting with real estate.
+      </motion.p>
+      
+      {/* CTAs - World-Class Pill Style */}
+      <motion.div 
+        initial={{opacity:0, y:20}} 
+        animate={{opacity:1, y:0}} 
+        transition={{delay:0.6, duration:0.6, ease:[0.22,1,0.36,1]}}
+        className="flex flex-wrap gap-5 justify-center mb-20"
+      >
+        <motion.a
+          href="/products"
+          whileHover={{scale: 1.02, y: -2}}
+          whileTap={{scale: 0.98}}
+          className="h-14 px-10 bg-white text-gray-900 text-base font-semibold rounded-full 
+            shadow-[0_1px_3px_rgba(0,0,0,0.12),0_4px_16px_rgba(0,0,0,0.08),0_8px_32px_rgba(0,0,0,0.04)]
+            hover:shadow-[0_2px_6px_rgba(0,0,0,0.15),0_8px_24px_rgba(0,0,0,0.12),0_16px_48px_rgba(0,0,0,0.06)]
+            transition-all duration-300 active:scale-[0.98]
+            flex items-center justify-center"
+        >
+          Explore Our Solutions
+        </motion.a>
+        <motion.a
+          href="/contact"
+          whileHover={{scale: 1.02, y: -2}}
+          whileTap={{scale: 0.98}}
+          className="h-14 px-10 bg-accent-orange-100 text-accent-orange text-base font-semibold rounded-full
+            shadow-[0_1px_3px_rgba(249,115,22,0.2),0_4px_16px_rgba(249,115,22,0.15),0_8px_32px_rgba(249,115,22,0.08)]
+            hover:shadow-[0_2px_6px_rgba(249,115,22,0.25),0_8px_24px_rgba(249,115,22,0.2),0_16px_48px_rgba(249,115,22,0.12)]
+            hover:bg-accent-orange-50
+            transition-all duration-300 active:scale-[0.98]
+            flex items-center justify-center"
+        >
+          Book a Demo
+        </motion.a>
+      </motion.div>
+      
+      {/* Trust Indicators - Premium Cards */}
+      <motion.div 
+        initial={{opacity:0, y:30}} 
+        animate={{opacity:1, y:0}} 
+        transition={{delay:0.8, duration:0.7, ease:[0.22,1,0.36,1]}}
+        className="flex flex-col items-center gap-10 w-full max-w-5xl"
+      >
+        {/* Stats Row - World-Class Design */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
+          {/* Trusted By */}
+          <motion.div 
+            initial={{opacity:0, y:20}}
+            animate={{opacity:1, y:0}}
+            transition={{delay:1, duration:0.6}}
+            whileHover={{y: -4, scale: 1.02}}
+            className="bg-white rounded-3xl flex flex-col items-center text-center py-10 px-8 
+              shadow-[0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08),0_16px_64px_rgba(0,0,0,0.04)]
+              hover:shadow-[0_4px_16px_rgba(0,0,0,0.1),0_12px_48px_rgba(0,0,0,0.12),0_24px_80px_rgba(0,0,0,0.06)]
+              border border-gray-50
+              transition-all duration-500 cursor-pointer
+              relative overflow-hidden group"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative z-10 w-full">
+              <div className="text-[10px] uppercase tracking-[0.15em] text-gray-500 font-bold mb-4 letter-spacing-wide">
+                Trusted by
+              </div>
+              <div className="text-6xl font-black text-gray-900 mb-3 tracking-tight leading-none">4+</div>
+              <div className="text-sm text-gray-700 font-semibold">Government Agencies</div>
+            </div>
+          </motion.div>
+          
+          {/* Mapping */}
+          <motion.div 
+            initial={{opacity:0, y:20}}
+            animate={{opacity:1, y:0}}
+            transition={{delay:1.15, duration:0.6}}
+            whileHover={{y: -4, scale: 1.02}}
+            className="bg-white rounded-3xl flex flex-col items-center text-center py-10 px-8 
+              shadow-[0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08),0_16px_64px_rgba(0,0,0,0.04)]
+              hover:shadow-[0_4px_16px_rgba(0,0,0,0.1),0_12px_48px_rgba(0,0,0,0.12),0_24px_80px_rgba(0,0,0,0.06)]
+              border border-gray-50
+              transition-all duration-500 cursor-pointer
+              relative overflow-hidden group"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative z-10 w-full">
+              <div className="text-[10px] uppercase tracking-[0.15em] text-gray-500 font-bold mb-4 letter-spacing-wide">
+                Mapping
+              </div>
+              <div className="text-6xl font-black text-gray-900 mb-3 tracking-tight leading-none">2M+</div>
+              <div className="text-sm text-gray-700 font-semibold">Properties</div>
+            </div>
+      </motion.div>
+          
+          {/* Coverage */}
+          <motion.div 
+            initial={{opacity:0, y:20}}
+            animate={{opacity:1, y:0}}
+            transition={{delay:1.3, duration:0.6}}
+            whileHover={{y: -4, scale: 1.02}}
+            className="bg-white rounded-3xl flex flex-col items-center text-center py-10 px-8 
+              shadow-[0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08),0_16px_64px_rgba(0,0,0,0.04)]
+              hover:shadow-[0_4px_16px_rgba(0,0,0,0.1),0_12px_48px_rgba(0,0,0,0.12),0_24px_80px_rgba(0,0,0,0.06)]
+              border border-gray-50
+              transition-all duration-500 cursor-pointer
+              relative overflow-hidden group"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative z-10 w-full">
+              <div className="text-[10px] uppercase tracking-[0.15em] text-gray-500 font-bold mb-4 letter-spacing-wide">
+                Across
+              </div>
+              <div className="text-6xl font-black text-gray-900 mb-3 tracking-tight leading-none">6</div>
+              <div className="text-sm text-gray-700 font-semibold">Nigerian States</div>
         </div>
-        <div className="flex gap-5 mt-3 opacity-80">
-          {/* Partner Logos (placeholder) */}
-          <Image src="/vercel.svg" alt="NIGCOMSAT Logo" width={50} height={24} />
-          <Image src="/next.svg" alt="Partner Logo" width={50} height={24} />
+          </motion.div>
         </div>
+        
+        {/* Partner Logos */}
+        <div className="flex gap-8 items-center opacity-60">
+          <Image src="/vercel.svg" alt="NIGCOMSAT Logo" width={70} height={32} className="brightness-0 invert" />
+          <Image src="/next.svg" alt="Partner Logo" width={70} height={32} className="brightness-0 invert" />
       </div>
+      </motion.div>
     </div>
   </section>
 );

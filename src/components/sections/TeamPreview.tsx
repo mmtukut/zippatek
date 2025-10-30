@@ -29,29 +29,79 @@ const founders = [
 ];
 
 export const TeamPreviewSection = () => (
-  <section className="w-full py-24 bg-gray-100 dark:bg-primary-900">
-    <div className="max-w-5xl mx-auto px-4 text-center">
-      <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-900 dark:text-white mb-7">Built by World-Class Talent</h2>
-      <div className="mb-12 text-gray-800 dark:text-primary-100 opacity-80 max-w-2xl mx-auto">A team combining tech expertise with deep industry knowledge</div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start justify-center">
+  <section className="section-light section section-border-top">
+    <div className="container">
+      {/* Section Header */}
+      <div className="text-center mb-16">
+        <h2 className="section-title">Built by World-Class Talent</h2>
+        <p className="section-subtitle">
+          A team combining tech expertise with deep industry knowledge and global recognition
+        </p>
+      </div>
+      
+      {/* Founders Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto mb-12">
         {founders.map((f, i) => (
-          <motion.div key={f.name} initial={{opacity:0, y:40}} animate={{opacity:1, y:0}} transition={{delay:0.15*i}} className="bg-white dark:bg-primary-700/80 shadow rounded-xl p-7 flex flex-col items-center">
-            <div className="h-24 w-24 bg-primary-100 dark:bg-gray-900 rounded-full mb-3 flex items-center justify-center text-xl font-bold text-primary-700 uppercase opacity-80">
+          <motion.div 
+            key={f.name} 
+            initial={{opacity:0, y:40}} 
+            whileInView={{opacity:1, y:0}} 
+            viewport={{once: true}}
+            transition={{delay:0.15*i, duration:0.6}}
+            className="card-feature flex flex-col items-center text-center"
+          >
+            {/* Avatar */}
+            <div className="h-28 w-28 bg-gradient-to-br from-primary-500 to-accent-cyan rounded-full mb-5 flex items-center justify-center text-2xl font-bold text-white uppercase shadow-lg">
               {f.name.split(" ")[0][0]}{f.name.split(" ")[1][0]}
             </div>
-            <div className="font-heading font-bold text-lg mb-1 text-primary-900 dark:text-white">{f.name}</div>
-            <div className="text-gray-700 dark:text-primary-100 text-sm mb-2 font-medium">{f.title}</div>
-            <ul className="text-xs mb-2 text-gray-600/90 dark:text-gray-100/90 list-disc list-inside text-left mx-auto">
-              {f.creds.map(cred => <li key={cred}>{cred}</li>)}
+            
+            {/* Name & Title */}
+            <h3 className="font-heading font-extrabold text-xl mb-2 text-gray-900">
+              {f.name}
+            </h3>
+            <p className="text-accent-cyan text-sm font-bold mb-4">
+              {f.title}
+            </p>
+            
+            {/* Credentials */}
+            <ul className="text-xs mb-4 text-gray-700 space-y-1 font-medium">
+              {f.creds.map(cred => (
+                <li key={cred} className="flex items-center justify-center gap-2">
+                  <span className="text-accent-cyan font-bold">•</span>
+                  <span>{cred}</span>
+                </li>
+              ))}
             </ul>
-            <p className="text-xs text-left mb-2 text-gray-700 dark:text-primary-100 opacity-90">{f.bio}</p>
-            <a href={f.linkedIn} className="mt-2 hover:opacity-80" aria-label="View LinkedIn" target="_blank" rel="noopener noreferrer"><LinkedInIcon /></a>
+            
+            {/* Bio */}
+            <p className="text-sm text-gray-700 leading-relaxed mb-5 font-medium">
+              {f.bio}
+            </p>
+            
+            {/* LinkedIn Link */}
+            <a 
+              href={f.linkedIn} 
+              className="mt-auto hover:scale-110 transition-transform" 
+              aria-label={`View ${f.name}'s LinkedIn`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <LinkedInIcon />
+            </a>
           </motion.div>
         ))}
       </div>
-      <div className="mt-12">
-        <a href="/team" className="text-primary-700 dark:text-primary-100 hover:text-accent-cyan dark:hover:text-accent-cyan font-medium">Meet the Full Team &rarr;</a>
-      </div>
+      
+          {/* CTA Link */}
+          <div className="text-center flex justify-center">
+            <a
+              href="/team"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-900 hover:gap-3 transition-all font-bold group"
+            >
+              <span>Meet the Full Team</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
     </div>
   </section>
 );

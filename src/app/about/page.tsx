@@ -27,41 +27,68 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main className="max-w-5xl mx-auto py-12 px-4">
+      
+      {/* Hero Section */}
+      <section className="section-primary section-lg">
+        <div className="container text-center">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
+            From Gombe to the Globe
+          </h1>
+          <p className="text-xl text-primary-100 max-w-3xl mx-auto leading-relaxed">
+            Building Africa's property intelligence infrastructure with AI and satellite data
+          </p>
+        </div>
+      </section>
+      
+      <main className="section-light section">
+        <div className="container max-w-5xl">
         {/* Origin Story */}
-        <section className="mb-14">
-          <h1 className="font-heading text-4xl text-primary-900 font-bold mb-2">From Gombe to the Globe</h1>
-          <div className="text-lg text-gray-800 dark:text-primary-100 leading-8 max-w-2xl mb-4">
-            "Zippatek was born from a simple observation: Nigeria's cities are growing faster than anyone can map them. In 2024, Muhammad Tukur — then a computer science student — was working on his final year project using satellite imagery to detect buildings in Gombe State. The results were staggering: 2.3 million unmapped structures. ₦500 billion in lost government revenue.<br/><br/>That's when the insight hit: this wasn't just a research project. This was a ₦2 trillion problem affecting every Nigerian city. Together with industry veteran Aminu S. Muhammad, we founded Zippatek Digital Ltd in May 2025 with a bold mission: leverage cutting-edge technology to make Africa's invisible infrastructure visible.<br/><br/>Today, we're building the platforms governments and citizens need to navigate Africa's property landscape — fast, secure, and fraud-free."
+        <section className="mb-16">
+          <div className="card-feature">
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              Zippatek was born from a simple observation: Nigeria's cities are growing faster than anyone can map them. In 2024, Muhammad Tukur — then a computer science student — was working on his final year project using satellite imagery to detect buildings in Gombe State.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              The results were staggering: 2.3 million unmapped structures. ₦500 billion in lost government revenue.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              That's when the insight hit: this wasn't just a research project. This was a ₦2 trillion problem affecting every Nigerian city. Together with industry veteran Aminu S. Muhammad, we founded Zippatek Digital Ltd in May 2025 with a bold mission: leverage cutting-edge technology to make Africa's invisible infrastructure visible.
+            </p>
+            <a href="/blog/our-story" className="inline-flex items-center gap-2 text-accent-cyan font-semibold hover:gap-3 transition-all group">
+              <span>Read Our Full Journey</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
           </div>
-          <a href="/blog/our-story" className="text-accent-cyan font-semibold underline hover:text-primary-700">Read Our Full Journey</a>
         </section>
         {/* Mission, Vision, Values */}
-        <section className="mb-14">
-          <h2 className="font-heading text-2xl text-primary-700 font-bold mb-6">Mission, Vision, Values</h2>
+        <section className="mb-16">
+          <h2 className="section-title mb-12">Mission, Vision, Values</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {cards.map(c => (
-              <div key={c.label} className="bg-primary-100 dark:bg-primary-700/50 rounded-xl p-6 flex flex-col items-center text-center shadow">
-                <div className="mb-2">{c.icon}</div>
-                <div className="font-heading text-lg font-extrabold text-primary-900 dark:text-white mb-2">{c.label}</div>
-                <div className="text-sm text-gray-700 dark:text-primary-100 whitespace-pre-line">{c.text}</div>
+              <div key={c.label} className="card-feature flex flex-col items-center text-center">
+                <div className="mb-4">{c.icon}</div>
+                <div className="font-heading text-lg font-extrabold text-gray-900 mb-4">{c.label}</div>
+                <div className="text-sm text-gray-700 whitespace-pre-line leading-relaxed font-medium">{c.text}</div>
               </div>
             ))}
           </div>
         </section>
         {/* Milestones Timeline */}
-        <section className="mb-16">
-          <h2 className="font-heading text-2xl text-primary-700 font-bold mb-7">Milestones Timeline</h2>
-          <div className="border-l-2 border-primary-700 pl-8 pb-2">
-            {timeline.map(item => (
-              <div key={item.t + item.e} className="relative mb-7">
-                <span className="absolute -left-7 w-4 h-4 rounded-full bg-accent-cyan border-4 border-white dark:border-primary-900"></span>
-                <span className="font-semibold text-primary-900 dark:text-white">{item.t}: </span>
-                <span className="text-gray-800 dark:text-primary-100">{item.e}</span>
-              </div>
-            ))}
+        <section>
+          <h2 className="section-title mb-12">Our Journey</h2>
+          <div className="card-feature">
+            <div className="border-l-2 border-accent-cyan pl-8 pb-2">
+              {timeline.map(item => (
+                <div key={item.t + item.e} className="relative mb-8">
+                  <span className="absolute -left-[41px] w-4 h-4 rounded-full bg-accent-cyan border-4 border-white"></span>
+                  <span className="font-semibold text-accent-cyan">{item.t}: </span>
+                  <span className="text-gray-700">{item.e}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
+        </div>
       </main>
       <Footer />
     </>

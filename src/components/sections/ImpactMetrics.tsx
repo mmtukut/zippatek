@@ -17,23 +17,68 @@ function formatMetric(num: number, label: string) {
 }
 
 export const ImpactMetricsSection = () => (
-  <section className="w-full py-24 bg-primary-900 text-white border-t border-primary-700">
-    <div className="max-w-6xl mx-auto px-4">
-      <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-10 text-center">Our Impact So Far</h2>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
-        {metrics.map((m, i) => (
-          <motion.div key={m.label} initial={{opacity:0, y:28}} animate={{opacity:1, y:0}} transition={{delay:0.2+i*0.09}} className="rounded-xl p-6 bg-primary-700/70 flex flex-col items-center text-center shadow-lg">
-            <motion.div className="text-3xl font-bold text-accent-cyan mb-1" initial={{scale:0.85}} animate={{scale:1}} transition={{type:'spring', duration:0.7, delay:0.36+i*0.09}}>
-              {formatMetric(m.amount, m.label)}
-            </motion.div>
-            <div className="font-heading font-semibold text-base my-1">{m.label}</div>
-            <div className="text-xs text-primary-100 opacity-90">{m.desc}</div>
-          </motion.div>
-        ))}
+  <section className="section-dark section section-border-top">
+    <div className="container">
+      {/* Section Header */}
+      <div className="text-center mb-16">
+        <h2 className="section-title text-white">Our Impact So Far</h2>
+        <p className="section-subtitle text-primary-100">
+          Real numbers, real impact across Nigeria's property landscape
+        </p>
       </div>
-      {/* Nigeria map illustration placeholder */}
-      <div className="flex justify-center mt-12 opacity-50">
-        <svg width="180" height="75" viewBox="0 0 180 75" fill="none"><ellipse cx="90" cy="42" rx="82" ry="28" fill="#06B6D4" fillOpacity=".18"/><rect x="55" y="32" width="70" height="20" rx="8" fill="#3B82F6" fillOpacity=".18"/></svg>
+      
+          {/* Metrics Grid - World-Class Design */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            {metrics.map((m, i) => (
+              <motion.div
+                key={m.label}
+                initial={{opacity:0, y:40, scale: 0.94}}
+                whileInView={{opacity:1, y:0, scale: 1}}
+                viewport={{once: true, margin: "-50px"}}
+                transition={{delay:0.1+i*0.1, duration:0.7, ease:[0.22,1,0.36,1]}}
+                whileHover={{y: -6, scale: 1.03}}
+                className="bg-white rounded-3xl p-8 flex flex-col items-center text-center 
+                  shadow-[0_2px_8px_rgba(0,0,0,0.08),0_8px_32px_rgba(0,0,0,0.12),0_16px_64px_rgba(0,0,0,0.06)]
+                  hover:shadow-[0_4px_16px_rgba(0,0,0,0.12),0_12px_48px_rgba(0,0,0,0.16),0_24px_80px_rgba(0,0,0,0.08)]
+                  border border-gray-50
+                  transition-all duration-500 cursor-pointer
+                  relative overflow-hidden group"
+              >
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10 w-full">
+                  {/* Number */}
+                  <motion.div
+                    className="text-5xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight leading-none"
+                    initial={{scale:0.9, opacity:0}}
+                    whileInView={{scale:1, opacity:1}}
+                    viewport={{once: true}}
+                    transition={{type:'spring', duration:0.8, delay:0.2+i*0.1, bounce:0.3}}
+                  >
+                    {formatMetric(m.amount, m.label)}
+                  </motion.div>
+                  
+                  {/* Label */}
+                  <div className="font-heading font-bold text-base md:text-lg text-gray-900 mb-3">
+                    {m.label}
+                  </div>
+                  
+                  {/* Description */}
+                  <div className="text-sm text-gray-600 leading-relaxed font-medium">
+                    {m.desc}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+      
+      {/* Nigeria map illustration */}
+      <div className="flex justify-center mt-12 opacity-30">
+        <svg width="220" height="90" viewBox="0 0 220 90" fill="none">
+          <ellipse cx="110" cy="50" rx="100" ry="35" fill="#06B6D4" fillOpacity=".25"/>
+          <rect x="65" y="38" width="90" height="25" rx="10" fill="#3B82F6" fillOpacity=".2"/>
+        </svg>
       </div>
     </div>
   </section>

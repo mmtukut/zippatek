@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-import { Card } from "@/components/ui/Card";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 
 // Unique geometric icons for cards
@@ -50,29 +51,108 @@ const cards = [
 ];
 
 export const ProductShowcaseSection = () => (
-  <section className="relative w-full py-24 bg-gray-100 dark:bg-primary-900 border-t border-primary-100/60 dark:border-primary-700/30 overflow-x-hidden">
-    <span className="pointer-events-none absolute -top-32 -left-56 opacity-20 blur-3xl">
-      <svg width="350" height="170"><ellipse cx="200" cy="100" rx="120" ry="40" fill="#06B6D4"/></svg>
+  <section className="section-light section section-border-top relative overflow-hidden">
+    {/* Decorative background element */}
+    <span className="pointer-events-none absolute -top-32 -left-56 opacity-10 blur-3xl">
+      <svg width="400" height="200"><ellipse cx="220" cy="120" rx="140" ry="50" fill="#06B6D4"/></svg>
     </span>
-    <div className="max-w-6xl mx-auto px-4">
-      <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-900 dark:text-white mb-6 text-center">Our Flagship Platforms</h2>
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-12">
-        {cards.map(card => (
-          <Card
-            key={card.title}
-            glass
-            className="group transition-all shadow-zippa-glow border border-gray-200 dark:border-primary-600 hover:border-primary-500 hover:shadow-xl backdrop-blur-xl bg-white dark:bg-primary-800 relative"
-          >
-            <div className="flex flex-col items-center gap-3">
-              <div className="mb-2">{card.icon}</div>
-              <div className="font-heading font-bold text-lg text-primary-900 dark:text-white">{card.title}</div>
-              <div className={`text-xs font-semibold px-3 py-1.5 rounded-full mt-1 ${card.badgeColor} text-white tracking-wide capitalize shadow-sm`}>{card.badge}</div>
-              <div className="text-sm text-gray-700 dark:text-gray-200 font-medium mt-2 text-center">{card.tagline}</div>
-              <div className="mt-2 mb-4 text-xs text-gray-600 dark:text-gray-300 text-center min-h-[48px] leading-relaxed">{card.desc}</div>
-              <Button variant="primary" size="sm" href={card.cta.href} className="mt-auto group-hover:scale-105">{card.cta.label}</Button>
-            </div>
-          </Card>
-        ))}
+    
+    <div className="container">
+      {/* Section Header */}
+      <div className="text-center mb-16">
+        <h2 className="section-title">Our Flagship Platforms</h2>
+        <p className="section-subtitle">
+          Transforming African real estate with AI-powered solutions for consumers, governments, and enterprises
+        </p>
+      </div>
+      
+      {/* Product Cards - World-Class Design */}
+      <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+            {cards.map((card, index) => (
+              <motion.div
+                key={card.title}
+                initial={{opacity:0, y:40, scale: 0.96}}
+                whileInView={{opacity:1, y:0, scale: 1}}
+                viewport={{once: true, margin: "-100px"}}
+                transition={{delay:index * 0.12, duration:0.7, ease:[0.22,1,0.36,1]}}
+                whileHover={{y: -8, scale: 1.02}}
+                className="bg-white rounded-3xl p-8 group flex flex-col items-start text-left 
+                  shadow-[0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08),0_16px_64px_rgba(0,0,0,0.04)]
+                  hover:shadow-[0_4px_16px_rgba(0,0,0,0.1),0_12px_48px_rgba(0,0,0,0.12),0_24px_80px_rgba(0,0,0,0.06)]
+                  border border-gray-50
+                  transition-all duration-500 cursor-pointer
+                  relative overflow-hidden"
+              >
+                {/* Gradient Overlay */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                  index === 0 ? 'bg-gradient-to-br from-cyan-50/30 via-white to-white' : 
+                  index === 1 ? 'bg-gradient-to-br from-blue-50/30 via-white to-white' : 
+                  'bg-gradient-to-br from-orange-50/30 via-white to-white'
+                }`}></div>
+                
+                <div className="relative z-10 w-full">
+                  {/* Icon Circle - Refined */}
+                  <motion.div 
+                    className={`w-16 h-16 rounded-2xl mb-6 flex items-center justify-center
+                      shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl ${
+                      index === 0 ? 'bg-gradient-to-br from-cyan-100 to-cyan-50' : 
+                      index === 1 ? 'bg-gradient-to-br from-blue-100 to-blue-50' : 
+                      'bg-gradient-to-br from-orange-100 to-orange-50'
+                    }`}
+                    whileHover={{rotate: 5}}
+                  >
+                    <div className={`${
+                      index === 0 ? 'text-cyan-600' : 
+                      index === 1 ? 'text-blue-600' : 
+                      'text-orange-600'
+                    }`}>
+                      {card.icon}
+                    </div>
+                  </motion.div>
+
+                  {/* Badge - Premium */}
+                  <span className={`inline-block text-[10px] font-black px-4 py-2 rounded-full ${card.badgeColor} text-white 
+                    tracking-[0.12em] uppercase mb-5 
+                    shadow-[0_2px_8px_rgba(0,0,0,0.12)]
+                    group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.2)]
+                    transition-all duration-300`}>
+                    {card.badge}
+                  </span>
+
+                  {/* Title */}
+                  <h3 className="font-heading font-black text-3xl text-gray-900 mb-3 tracking-tight leading-tight">
+                    {card.title}
+                  </h3>
+
+                  {/* Tagline */}
+                  <p className="text-base font-bold text-gray-700 mb-5 leading-snug">
+                    {card.tagline}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-sm text-gray-600 leading-relaxed mb-8 flex-grow font-medium">
+                    {card.desc}
+                  </p>
+
+                  {/* CTA Button - Refined */}
+                  <motion.a
+                    href={card.cta.href}
+                    whileHover={{x: 4}}
+                    whileTap={{scale: 0.97}}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-accent-orange-100 text-accent-orange 
+                      rounded-full font-semibold text-sm
+                      shadow-[0_2px_8px_rgba(249,115,22,0.15)]
+                      hover:shadow-[0_4px_16px_rgba(249,115,22,0.25)]
+                      hover:bg-accent-orange-50
+                      transition-all duration-300
+                      group/btn"
+                  >
+                    <span>{card.cta.label}</span>
+                    <span className="group-hover/btn:translate-x-1 transition-transform duration-300">→</span>
+                  </motion.a>
+                </div>
+              </motion.div>
+            ))}
       </div>
     </div>
   </section>

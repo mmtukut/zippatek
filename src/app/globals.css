@@ -4,63 +4,429 @@
 @import "@fontsource/space-grotesk/index.css";
 @import "@fontsource/jetbrains-mono/index.css";
 
+/* ═══════════════════════════════════════════════════════════════
+   ZIPPATEK DESIGN SYSTEM
+   African Innovation × Global Execution
+   Dark Mode First | Glassmorphism | AAA Accessibility
+   ═══════════════════════════════════════════════════════════════ */
+
 :root {
-  /* Brand Colors */
-  --primary-900: #0A2463;
-  --primary-700: #1E40AF;
-  --primary-500: #3B82F6;
-  --primary-100: #DBEAFE;
-  --accent-cyan: #06B6D4;
-  --accent-orange: #F97316;
-  --gray-900: #111827;
-  --gray-700: #374151;
-  --gray-400: #9CA3AF;
-  --gray-100: #F3F4F6;
+      /* Modern Fintech Color System */
+      --primary-900: #0F172A;  /* Deep slate */
+      --primary-700: #334155;  /* Slate gray */
+      --primary-500: #64748B;  /* Balanced gray */
+      --primary-100: #F1F5F9;  /* Soft gray-blue */
+      --accent-orange: #F97316; /* Primary CTA */
+      --accent-cyan: #06B6D4;   /* Secondary actions */
+      --accent-blue: #3B82F6;   /* Trust/Info */
+
+      /* Semantic Colors */
   --success: #10B981;
   --warning: #F59E0B;
   --error: #EF4444;
-  --white: #fff;
 
-  /* Typography */
-  --font-sans: 'Inter', 'Outfit', 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
-  --font-heading: 'Space Grotesk', 'Clash Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Menlo', 'Monaco', 'Consolas', monospace;
-}
+      /* Enhanced Neutrals */
+      --gray-900: #0F172A;
+      --gray-700: #334155;
+      --gray-500: #64748B;
+      --gray-300: #CBD5E1;
+      --gray-100: #F1F5F9;
+      --gray-50: #F8FAFC;
+      --white: #ffffff;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0A2463;
-    --foreground: #DBEAFE;
-  }
+      /* Light Mode (Default for Banking Apps) */
+      --background: #F8FAFC;
+      --foreground: #0F172A;
+      --surface: #FFFFFF;
+      --surface-elevated: #F1F5F9;
+      --surface-peach: #FFF7ED;
+      --surface-cyan: #ECFEFF;
+
+      /* Typography System */
+      --font-sans: 'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-heading: 'Space Grotesk', 'Clash Display', 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+      /* Glassmorphism Variables */
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(226, 232, 240, 0.8);
+      --glass-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.08);
+
+      /* Animation Timings */
+      --transition-fast: 150ms;
+      --transition-base: 250ms;
+      --transition-slow: 400ms;
+      --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+      --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   BASE STYLES - Dark Mode First
+   ═══════════════════════════════════════════════════════════════ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   font-size: 16px;
   font-family: var(--font-sans);
-  background: var(--gray-100);
-  color: var(--gray-900);
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  @apply min-h-screen font-sans bg-gray-100 text-gray-900 antialiased;
+  min-height: 100vh;
   font-family: var(--font-sans);
-  background: var(--gray-100);
-  color: var(--gray-900);
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-base) var(--ease-out),
+              color var(--transition-base) var(--ease-out);
 }
 
-.dark body {
+    /* Light Mode (Default - Banking App Style) */
+    body {
+      background: white;
+      color: #0F172A;
+    }
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY - AAA/AA Contrast & Touch Targets
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Focus Styles (Keyboard Navigation) */
+*:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Skip to Content Link */
+.skip-to-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  padding: 1rem;
+  background: var(--accent-cyan);
+  color: white;
+  font-weight: bold;
+  border-bottom-right-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-100%);
+  transition: transform 200ms;
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+}
+
+/* Large Touch Targets (WCAG 2.5.5) */
+button,
+a[role="button"],
+input[type="button"],
+input[type="submit"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GLASSMORPHISM UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Removed glass effects - using clean cards instead */
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION SUPPORT (Accessibility)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Text Selection */
+::selection {
+  background: var(--accent-cyan);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--accent-cyan);
+  color: white;
+}
+
+/* Scrollbar Styling (Dark Mode Optimized) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
   background: var(--primary-900);
-  color: var(--primary-100);
 }
 
-* {
-  box-sizing: border-box;
+::-webkit-scrollbar-thumb {
+  background: var(--primary-700);
+  border-radius: 5px;
+  transition: background var(--transition-base);
 }
 
-@media (max-width: 600px) {
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
   html {
     font-size: 15px;
   }
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+  :root {
+    --glass-bg: rgba(30, 64, 175, 0.9);
+    --glass-border: rgba(219, 234, 254, 0.5);
+  }
+  
+  button, a {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION LAYOUT SYSTEM - Consistent Spacing & Backgrounds
+   ═══════════════════════════════════════════════════════════════ */
+
+    /* Section Spacing - Airbnb Style */
+    .section {
+      padding-top: 5rem;    /* 80px */
+      padding-bottom: 5rem; /* 80px */
+    }
+
+    .section-sm {
+      padding-top: 3rem;    /* 48px */
+      padding-bottom: 3rem; /* 48px */
+    }
+
+    .section-lg {
+      padding-top: 7rem;    /* 112px */
+      padding-bottom: 7rem; /* 112px */
+    }
+
+    .section-xl {
+      padding-top: 9rem;    /* 144px */
+      padding-bottom: 9rem; /* 144px */
+    }
+
+/* Section Background Variants (Alternating Visual Rhythm) */
+
+/* Primary Dark - Hero, Major CTAs */
+.section-primary {
+  background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 50%, var(--primary-500) 100%);
+  color: var(--primary-100);
+}
+
+    /* Secondary Dark - Data, Metrics */
+    .section-dark {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      color: #F8FAFC;
+    }
+
+    /* Clean Light Section - Subtle gray */
+    .section-light {
+      background: #F8FAFC;
+      color: #0F172A;
+    }
+
+    /* Pure White - Clean sections */
+    .section-neutral {
+      background: white;
+      color: #0F172A;
+    }
+    
+    /* Warm Peach section - occasional accent */
+    .section-peach {
+      background: #FFF7ED;
+      color: #0F172A;
+    }
+    
+    /* Cool Cyan section - occasional accent */
+    .section-cyan {
+      background: #ECFEFF;
+      color: #0F172A;
+    }
+
+/* Container Max Widths - Clean Spacing */
+.container-sm {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.container {
+  max-width: 1200px; /* 75rem - wider for modern screens */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+.container-lg {
+  max-width: 1280px; /* 80rem */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Section Borders */
+.section-border-top {
+  border-top: 1px solid rgba(219, 234, 254, 0.1);
+}
+
+
+    /* Section Headings - World-Class Typography */
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 2rem + 1.5vw, 3.5rem); /* 40-56px */
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      font-size: clamp(1.125rem, 1.05rem + 0.5vw, 1.375rem); /* 18-22px */
+      line-height: 1.65;
+      color: #64748B;
+      text-align: center;
+      max-width: 52rem;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 5rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    
+    .letter-spacing-wide {
+      letter-spacing: 0.15em;
+    }
+
+    /* Card System - Airbnb Style */
+    .card-feature {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #EBEBEB;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-feature:hover {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+    
+    /* Clean white card variant */
+    .card-clean {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      border: 1px solid #EBEBEB;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Icon Circle Backgrounds - Vibrant Banking Style */
+    .icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 200ms;
+    }
+    
+    .icon-circle-orange {
+      background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+      color: #F97316;
+    }
+    
+    .icon-circle-blue {
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      color: #3B82F6;
+    }
+    
+    .icon-circle-cyan {
+      background: linear-gradient(135deg, #ECFEFF 0%, #CFFAFE 100%);
+      color: #06B6D4;
+    }
+    
+    .icon-circle-purple {
+      background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 100%);
+      color: #A855F7;
+    }
+    
+    .icon-circle-green {
+      background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+      color: #10B981;
+    }
+
+.card-glass-feature {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #EBEBEB;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-glass-feature:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08);
 }

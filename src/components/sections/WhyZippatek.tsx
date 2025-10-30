@@ -46,21 +46,46 @@ const FEATURES = [
 ];
 
 export const WhyZippatekSection = () => (
-  <section className="w-full py-24 bg-white dark:bg-primary-900">
-    <div className="max-w-6xl mx-auto px-4">
-      <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-900 dark:text-white mb-10 text-center">Why Zippatek?</h2>
-      <div className="grid gap-8 md:grid-cols-3">
-        {FEATURES.map((f, i) => (
-          <div
-            key={f.title}
-            className="rounded-xl bg-primary-100/50 dark:bg-primary-700/50 p-6 flex flex-col items-center text-center shadow group transition-all hover:shadow-lg hover:bg-white/90 dark:hover:bg-primary-700/90 cursor-pointer"
-          >
-            <div className="mb-4">{f.icon}</div>
-            <div className="font-heading font-bold text-lg text-primary-900 dark:text-white mb-1">{f.title}</div>
-            <div className="text-sm text-gray-700 dark:text-primary-100 opacity-90">{f.desc}</div>
-          </div>
-        ))}
+  <section className="section-neutral section section-border-top">
+    <div className="container">
+      {/* Section Header */}
+      <div className="text-center mb-16">
+        <h2 className="section-title">Why Zippatek?</h2>
+        <p className="section-subtitle">
+          Built for Africa, powered by world-class technology, and trusted by governments and enterprises
+        </p>
       </div>
+      
+          {/* Feature Grid */}
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+            {FEATURES.map((f, i) => (
+              <div
+                key={f.title}
+                className="card-feature flex items-start gap-4 group cursor-pointer hover:shadow-lg"
+              >
+                {/* Icon Circle */}
+                <div className={`icon-circle flex-shrink-0 group-hover:scale-110 ${
+                  i % 3 === 0 ? 'icon-circle-orange' : 
+                  i % 3 === 1 ? 'icon-circle-cyan' : 
+                  'icon-circle-blue'
+                }`}>
+                  {f.icon}
+                </div>
+
+                <div className="flex-grow">
+                  {/* Title */}
+                  <h3 className="font-heading font-extrabold text-lg text-gray-900 mb-2">
+                    {f.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-gray-700 leading-relaxed font-medium">
+                    {f.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
     </div>
   </section>
 );
