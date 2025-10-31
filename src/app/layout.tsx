@@ -62,6 +62,7 @@ export default function RootLayout({
             <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
             <meta name="theme-color" content="#F97316" />
             <meta name="color-scheme" content="light" />
+            <meta name="facebook-domain-verification" content="oeiepg3raemmondj8wsmsdznh4f33n" />
           </head>
       <body className="font-sans antialiased bg-white">
         <SkipToContent />
