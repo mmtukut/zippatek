@@ -1,12 +1,15 @@
 # Vercel Deployment 404 Fix Guide
 
 ## Issue
-Vercel is returning `404: NOT_FOUND` error even though the build completes successfully locally.
+Vercel is returning `404: NOT_FOUND` error even though the build completes successfully. 
+**Build logs show:** "Build Completed in /vercel/output [20s]" and "Deployment completed" but still 404.
 
 ## Code Fixes Applied ✅
 1. ✅ Created `src/app/not-found.tsx` (required for Next.js App Router)
 2. ✅ Verified build completes successfully with all routes
 3. ✅ Verified Next.js config is correct
+4. ✅ Added `engines` field to package.json
+5. ✅ Optimized Next.js config for Vercel
 
 ## Vercel Dashboard Settings to Check
 
@@ -37,18 +40,60 @@ Vercel is returning `404: NOT_FOUND` error even though the build completes succe
 - Check if any required environment variables are missing
 - Go to **Settings** → **Environment Variables**
 
-## Quick Fix Steps
+## ⚠️ CRITICAL: Vercel Dashboard Settings
 
-1. **Clear Root Directory:**
-   - Settings → General → Root Directory → Set to empty/root
+Since your build completes successfully but deployment returns 404, this is **100% a Vercel dashboard configuration issue**.
 
-2. **Verify Framework:**
-   - Settings → General → Framework Preset → Should be "Next.js"
+### Step-by-Step Fix (DO THIS NOW):
 
-3. **Redeploy:**
+1. **Go to Vercel Dashboard:**
+   - Visit: https://vercel.com/dashboard
+   - Click on your `zippatek` project
+
+2. **Check Framework Preset (MOST IMPORTANT):**
+   - Click **Settings** tab
+   - Click **General** in left sidebar
+   - Scroll to **Framework Preset**
+   - **MUST be set to:** `Next.js`
+   - If it says "Other" or anything else, click it and select **Next.js**
+   - Click **Save**
+
+3. **Check Root Directory (CRITICAL):**
+   - In same **Settings → General** page
+   - Scroll to **Root Directory**
+   - **MUST be EMPTY** (not `.` and definitely not `zippatek-website`)
+   - If it has any value, **delete it** and leave it blank
+   - Click **Save**
+
+4. **Check Build Settings:**
+   - Still in **Settings → General**
+   - Scroll to **Build & Development Settings**
+   - **Build Command:** Should be `npm run build` OR empty (leave empty if unsure)
+   - **Output Directory:** **MUST be EMPTY** (Vercel auto-detects `.next` for Next.js)
+   - **Install Command:** Should be `npm install` OR empty
+   - Click **Save**
+
+5. **Force Redeploy:**
    - Go to **Deployments** tab
-   - Click **...** on latest deployment
+   - Find your latest deployment
+   - Click the **...** (three dots) menu
    - Click **Redeploy**
+   - Select **Use existing Build Cache** (optional, can uncheck to force fresh build)
+   - Click **Redeploy**
+
+### If Still Not Working:
+
+6. **Check Node.js Version:**
+   - Settings → General → **Node.js Version**
+   - Should be **20.x** or **18.x**
+   - If different, change it
+
+7. **Disconnect and Reconnect GitHub:**
+   - Settings → **Git**
+   - Disconnect GitHub
+   - Reconnect GitHub
+   - Ensure it's pointing to `mmtukut/zippatek` repo, `main` branch
+   - Redeploy
 
 ## After Fixing Settings
 
