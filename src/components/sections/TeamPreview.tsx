@@ -1,107 +1,89 @@
+
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Linkedin, ArrowRight } from "lucide-react";
 
-// LinkedIn SVG (Lucide or simplified)
-function LinkedInIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#0A2463"/><path d="M8 10v6M8 8v.01M12 10v6m0-6a2 2 0 0 1 4 0v6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>
-  );
-}
-
-const founders = [
+const teamMembers = [
   {
     name: "Muhammad Muhammad Tukur",
     title: "Co-Founder & CTO",
-    creds: ["UN Millennium Fellow", "McKinsey Forward Champion", "GDG Lead", "NIGCOMSAT Accelerator Alum"],
-    bio: "Tech visionary with a track record of building AI-native solutions. Led 1,000+ students in digital transformation initiatives across Northeast Nigeria.",
-    imageAlt: "Muhammad Tukur headshot",
-    linkedIn: "#",
+    bio: "A tech visionary with a track record in building AI-native solutions. Recognized as a UN Millennium Fellow and McKinsey Forward Champion.",
+    imageUrl: "/team/muhammad-tukur.jpg", // Placeholder path
+    linkedinUrl: "#",
   },
   {
     name: "Aminu S. Muhammad",
     title: "Co-Founder & COO",
-    creds: ["Chartered Estate Surveyor & Valuer", "Licensed Marketer", "10+ Years Industry Experience"],
-    bio: "Property industry veteran bringing deep market expertise and government relationships. Former founder of Property Market NG.",
-    imageAlt: "Aminu S. Muhammad headshot",
-    linkedIn: "#",
+    bio: "A seasoned property industry veteran with over a decade of experience, bringing deep market expertise and government relationships.",
+    imageUrl: "/team/aminu-muhammad.jpg", // Placeholder path
+    linkedinUrl: "#",
   },
 ];
 
 export const TeamPreviewSection = () => (
-  <section className="section-light section section-border-top">
-    <div className="container">
-      {/* Section Header */}
-      <div className="text-center mb-16">
-        <h2 className="section-title">Built by World-Class Talent</h2>
-        <p className="section-subtitle">
-          A team combining tech expertise with deep industry knowledge and global recognition
+  <section className="bg-white dark:bg-neutral-900 py-20 sm:py-24">
+    <div className="container mx-auto px-4">
+      <div className="text-center max-w-3xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl font-bold font-heading text-neutral-900 dark:text-white">
+          Driven by a World-Class Team
+        </h2>
+        <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-300">
+          We are a blend of technologists, real estate experts, and strategists united by a single mission: to build the future of African property intelligence.
         </p>
       </div>
-      
-      {/* Founders Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto mb-12">
-        {founders.map((f, i) => (
-          <motion.div 
-            key={f.name} 
-            initial={{opacity:0, y:40}} 
-            whileInView={{opacity:1, y:0}} 
-            viewport={{once: true}}
-            transition={{delay:0.15*i, duration:0.6}}
-            className="card-feature flex flex-col items-center text-center"
+
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
+        {teamMembers.map((member, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.7, delay: index * 0.1, ease: "easeOut" }}
           >
-            {/* Avatar */}
-            <div className="h-28 w-28 bg-gradient-to-br from-primary-500 to-accent-cyan rounded-full mb-5 flex items-center justify-center text-2xl font-bold text-white uppercase shadow-lg">
-              {f.name.split(" ")[0][0]}{f.name.split(" ")[1][0]}
-            </div>
-            
-            {/* Name & Title */}
-            <h3 className="font-heading font-extrabold text-xl mb-2 text-gray-900">
-              {f.name}
-            </h3>
-            <p className="text-accent-cyan text-sm font-bold mb-4">
-              {f.title}
-            </p>
-            
-            {/* Credentials */}
-            <ul className="text-xs mb-4 text-gray-700 space-y-1 font-medium">
-              {f.creds.map(cred => (
-                <li key={cred} className="flex items-center justify-center gap-2">
-                  <span className="text-accent-cyan font-bold">•</span>
-                  <span>{cred}</span>
-                </li>
-              ))}
-            </ul>
-            
-            {/* Bio */}
-            <p className="text-sm text-gray-700 leading-relaxed mb-5 font-medium">
-              {f.bio}
-            </p>
-            
-            {/* LinkedIn Link */}
-            <a 
-              href={f.linkedIn} 
-              className="mt-auto hover:scale-110 transition-transform" 
-              aria-label={`View ${f.name}'s LinkedIn`} 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              <LinkedInIcon />
-            </a>
+            <Card bordered className="text-center h-full">
+              <div className="p-8">
+                <div className="relative w-32 h-32 mx-auto mb-6">
+                  <Image
+                    src={member.imageUrl}
+                    alt={`Portrait of ${member.name}`}
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-full"
+                  />
+                   <div className="absolute inset-0 rounded-full ring-2 ring-offset-4 ring-offset-white dark:ring-offset-neutral-800 ring-primary-200 dark:ring-primary-900"></div>
+                </div>
+                <h3 className="text-xl font-bold font-heading text-neutral-900 dark:text-white">{member.name}</h3>
+                <p className="mt-1 text-sm font-semibold text-primary-600 dark:text-accent-cyan">{member.title}</p>
+                <p className="mt-4 text-neutral-600 dark:text-neutral-400 text-sm">
+                  {member.bio}
+                </p>
+                <a 
+                  href={member.linkedinUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block mt-6 text-neutral-500 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-white transition-colors"
+                  aria-label={`LinkedIn profile of ${member.name}`}
+                >
+                  <Linkedin size={24} />
+                </a>
+              </div>
+            </Card>
           </motion.div>
         ))}
       </div>
-      
-          {/* CTA Link */}
-          <div className="text-center flex justify-center">
-            <a
-              href="/team"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-900 hover:gap-3 transition-all font-bold group"
-            >
-              <span>Meet the Full Team</span>
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
+
+      <div className="mt-16 text-center">
+        <Button as={Link} href="/team" variant="secondary" size="xl">
+          Meet the Entire Team
+          <ArrowRight className="w-5 h-5 ml-2" />
+        </Button>
+      </div>
     </div>
   </section>
 );

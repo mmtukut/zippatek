@@ -1,91 +1,75 @@
-import React from "react";
 
-const FEATURES = [
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
+import { CheckCircle, Globe, Zap, Shield, Users, Target } from 'lucide-react';
+
+const features = [
   {
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="#06B6D4"/><path d="M8 24c.5-6.5 8.5-14.5 10-12C20.5 14.5 28 14 24 24" stroke="#fff" strokeWidth="2"/></svg>
-    ),
-    title: "AI-Native",
-    desc: "Built with artificial intelligence at the core, not bolted on later",
+    icon: Target,
+    title: "AI-Native Approach",
+    description: "Our solutions are built with artificial intelligence at their core, enabling unparalleled accuracy and efficiency in property detection and data analysis."
   },
   {
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32"><rect x="8" y="12" width="16" height="10" rx="4" fill="#0A2463"/><circle cx="16" cy="16" r="7" stroke="#06B6D4" strokeWidth="2"/><rect x="15" y="8" width="2" height="7" rx="1" fill="#06B6D4"/></svg>
-    ),
+    icon: Globe,
     title: "Satellite Precision",
-    desc: "Leveraging space technology for unprecedented accuracy",
+    description: "We leverage high-resolution satellite imagery, providing a macro-view of development that's impossible to achieve with traditional ground surveying."
   },
   {
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#F97316" /><path d="M4 20c5-8 19-8 24 0" stroke="#fff" strokeWidth="2"/></svg>
-    ),
-    title: "African-First",
-    desc: "Designed for Africa's unique challenges, not copied from the West",
+    icon: Users,
+    title: "Built for Africa, by Africans",
+    description: "Our platforms are designed to solve the unique challenges of the African property market, considering factors like informal settlements and rapid urbanization."
   },
   {
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32"><rect x="9" y="10" width="14" height="12" rx="4" fill="#1E40AF"/><rect x="16" y="16" width="2" height="8" fill="#DBEAFE"/></svg>
-    ),
-    title: "Government-Ready",
-    desc: "Enterprise-grade security and compliance for public sector partners",
+    icon: Shield,
+    title: "Government-Grade Security",
+    description: "We provide enterprise-level security and data privacy, ensuring that sensitive government and citizen data is always protected."
   },
   {
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32"><rect x="6" y="20" width="20" height="5" rx="2" fill="#06B6D4"/><rect x="11" y="7" width="10" height="11" rx="2" fill="#3B82F6"/></svg>
-    ),
-    title: "Developer-Friendly",
-    desc: "Robust APIs and documentation for seamless integration",
+    icon: Zap,
+    title: "Rapid & Scalable",
+    description: "Our technology can map an entire state in weeks, not years, providing officials with the timely data needed for effective policymaking."
   },
   {
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32"><rect x="10" y="8" width="12" height="16" rx="6" fill="#10B981"/><path d="M16 16l6 6" stroke="#fff" strokeWidth="2"/><circle cx="16" cy="16" r="4" fill="#fff"/></svg>
-    ),
-    title: "Continuous Innovation",
-    desc: "Led by UN Millennium Fellow and McKinsey Forward Champion",
-  },
+    icon: CheckCircle,
+    title: "Verifiable Ground Truth",
+    description: "We provide the tools to cross-validate our satellite data with on-the-ground information, creating a single, reliable source of truth for property records."
+  }
 ];
 
 export const WhyZippatekSection = () => (
-  <section className="section-neutral section section-border-top">
-    <div className="container">
-      {/* Section Header */}
-      <div className="text-center mb-16">
-        <h2 className="section-title">Why Zippatek?</h2>
-        <p className="section-subtitle">
-          Built for Africa, powered by world-class technology, and trusted by governments and enterprises
+  <section className="bg-neutral-50 dark:bg-neutral-800 py-20 sm:py-24">
+    <div className="container mx-auto px-4">
+      <div className="text-center max-w-3xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl font-bold font-heading text-primary-900 dark:text-white">
+          The Zippatek Advantage
+        </h2>
+        <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-300">
+          We're not just another proptech company. We are a data infrastructure company building the foundational layer for a more transparent and efficient African property market.
         </p>
       </div>
-      
-          {/* Feature Grid */}
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-            {FEATURES.map((f, i) => (
-              <div
-                key={f.title}
-                className="card-feature flex items-start gap-4 group cursor-pointer hover:shadow-lg"
-              >
-                {/* Icon Circle */}
-                <div className={`icon-circle flex-shrink-0 group-hover:scale-110 ${
-                  i % 3 === 0 ? 'icon-circle-orange' : 
-                  i % 3 === 1 ? 'icon-circle-cyan' : 
-                  'icon-circle-blue'
-                }`}>
-                  {f.icon}
-                </div>
 
-                <div className="flex-grow">
-                  {/* Title */}
-                  <h3 className="font-heading font-extrabold text-lg text-gray-900 mb-2">
-                    {f.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-sm text-gray-700 leading-relaxed font-medium">
-                    {f.desc}
-                  </p>
-                </div>
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+        {features.map((feature, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+          >
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center p-3 bg-primary-100 dark:bg-primary-900/50 rounded-full mb-4">
+                <feature.icon className="w-7 h-7 text-primary-500 dark:text-accent-cyan" />
               </div>
-            ))}
-          </div>
+              <h3 className="text-xl font-bold font-heading text-neutral-900 dark:text-white">{feature.title}</h3>
+              <p className="mt-2 text-neutral-600 dark:text-neutral-400">
+                {feature.description}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
   </section>
 );
