@@ -1,5 +1,6 @@
 
 import { NextPage } from 'next';
+import Link from 'next/link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/Button';
@@ -68,7 +69,7 @@ const ContactPage: NextPage = () => {
 
               {/* Contact Form */}
               <div>
-                <Card glass intense>
+                <Card glassIntense>
                   <div className="p-8">
                     <h2 className="text-2xl font-bold font-heading text-white mb-6">Send us a Message</h2>
                     <form className="space-y-6">
@@ -95,7 +96,9 @@ const ContactPage: NextPage = () => {
                         <textarea id="message" name="message" rows={5} className="mt-1 block w-full bg-primary-900/50 border-primary-700 rounded-md shadow-sm text-white focus:ring-accent-cyan focus:border-accent-cyan"></textarea>
                       </div>
                       <div>
-                        <Button type="submit" variant="primary" size="lg" fullWidth>Send Message</Button>
+                        <Button asChild type="submit" variant="primary" size="lg" fullWidth>
+                          <Link href="#">Send Message</Link>
+                        </Button>
                       </div>
                     </form>
                   </div>

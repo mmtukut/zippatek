@@ -1,5 +1,6 @@
 
 import { NextPage } from 'next';
+import Link from 'next/link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/Button';
@@ -74,8 +75,10 @@ const CareersPage: NextPage = () => {
                     Please check back later for future opportunities. If you believe you're a great fit for our mission, feel free to send a speculative application.
                   </p>
                   <div className="mt-8">
-                    <Button as="a" href="mailto:careers@zippatek.com" variant="secondary" size="lg">
-                      Contact Us <ArrowRight className="w-4 h-4 ml-2" />
+                    <Button asChild variant="secondary" size="lg">
+                      <Link href="mailto:careers@zippatek.com">
+                        Contact Us <ArrowRight className="w-4 h-4 ml-2" />
+                      </Link>
                     </Button>
                   </div>
                 </div>
